@@ -1,0 +1,90 @@
+﻿<Window x:Class="MapaManifestacija.IzborEtiketa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MapaManifestacija"
+        xmlns:l="clr-namespace:MapaManifestacija.Help"
+        mc:Ignorable="d"
+        Title="Izbor etiketa" ResizeMode="NoResize" Height="368" Width="533">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    
+    <StackPanel>
+        <!-- NASLOV -->
+        <StackPanel Margin ="5 5 5 5">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="0 0 10 0" Width="30" Height="30" Source = "C:\Users\Marijana Kolosnjaji\Documents\Visual Studio 2015\Projects\MapaManifestacija\Images\info32.png" />
+                <TextBlock FontWeight="Medium"  Width="472" VerticalAlignment="Center" TextAlignment="Justify" TextWrapping="Wrap">Izaberite neku od prethodno kreiranih etiketa. Klikom na strelice možete premeštati odabrane etikete iz jedne liste u drugu.</TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <GroupBox BorderThickness="1" Header="Moguće etikete" FontWeight="SemiBold" Margin="5 5 5 5" Padding="1" BorderBrush="LightGray" >
+                <ListBox Name="listbox1" Grid.Column="0" Grid.Row="0" Width="220" Height="220"  HorizontalAlignment="Left">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding Boja}" Text="{Binding Oznaka}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+            <StackPanel Margin="0 90 0 0" Width="30" Grid.Column="1" Grid.Row="0">
+                <Button l:HelpProvider.HelpKey="izborEtikete.html" Margin="0 0 0 10" Click="DodajEtiketu">
+                    <Button.Content>
+                        <Image Height="20" Width="20" Source="C:\Users\Marijana Kolosnjaji\Documents\Visual Studio 2015\Projects\MapaManifestacija\Images\next.png" />
+                    </Button.Content>
+                </Button>
+                <Button l:HelpProvider.HelpKey="izborEtikete.html" Margin="0 0 0 10" Click="VratiEtiketu">
+                        <Button.Content>
+                        <Image Height="20" Width="20" Source="C:\Users\Marijana Kolosnjaji\Documents\Visual Studio 2015\Projects\MapaManifestacija\Images\back.png" />
+                        </Button.Content>
+                    </Button>
+            </StackPanel>
+            <GroupBox BorderThickness="1" Grid.Column="2" Grid.Row="0" Header="Izabrane etikete" FontWeight="SemiBold" Margin="5 5 5 5" Padding="1" BorderBrush="LightGray" >
+                <ListBox Name="listbox2" Width="220" Height="220" HorizontalAlignment="Left">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Foreground="{Binding Boja}" Text="{Binding Oznaka}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+        </Grid>
+        <!-- POTVRDI/ODUSTANI -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button Margin ="25 5 25 5" Grid.Column="2" ToolTip="Potvrda i dodavanje manifestacije." Click="PotvrdiClick">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Potvrdi" Margin="0 0 10 0"/>
+                        <Image Height="15" Width="15" Source="C:\Users\Marijana Kolosnjaji\Documents\Visual Studio 2015\Projects\MapaManifestacija\Images\checked2.png"></Image>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Margin ="25 5 25 5" Grid.Column="3" ToolTip="Napuštanje forme za dodavanje manifestacije." Click="OdustaniClick">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Odustani" Margin="0 0 10 0"/>
+                        <Image Height="15" Width="15" Source="C:\Users\Marijana Kolosnjaji\Documents\Visual Studio 2015\Projects\MapaManifestacija\Images\cancel.png"></Image>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </StackPanel>
+</Window>
